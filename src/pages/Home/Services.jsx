@@ -54,7 +54,6 @@ const Services = () => {
           Enjoy fast, reliable parcel delivery with real-time tracking and zero
           hassle.
         </p>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {servicesData.map((item) => (
             <div
