@@ -33,16 +33,12 @@ const Features = () => {
             key={item.id}
             className="bg-white  rounded-xl p-8 shadow-sm flex items-center gap-6 border border-gray-200"
           >
-            {/* Left Icon */}
             <div className="w-28 border-r pr-2 border-dashed border-gray-400 flex justify-center">
-              {/* যদি ইমোজি হয় */}
               <span className="text-5xl">{item.icon}</span>
 
-              {/* যদি image icon হয় */}
               <img src={item.image} alt="" className="w-20" />
             </div>
 
-            {/* Right Content */}
             <div>
               <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
               <p className="text-gray-600 leading-relaxed text-sm">

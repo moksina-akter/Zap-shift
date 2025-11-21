@@ -1,6 +1,6 @@
 import React, { use } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -28,23 +28,29 @@ const Reviews = ({ reviesPromise }) => {
 
       {/* Swiper Section */}
       <Swiper
+        loop={true}
         effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
-        slidesPerView={1}
+        slidesPerView={3}
         breakpoints={{
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: false,
+        }}
         coverflowEffect={{
           rotate: 30,
-          stretch: 0,
-          depth: 100,
+          stretch: "50%",
+          depth: 200,
           modifier: 1,
+          scale: 0.75,
           slideShadows: true,
         }}
         pagination={{ clickable: true }}
-        modules={[EffectCoverflow, Pagination]}
+        modules={[EffectCoverflow, Autoplay, Pagination]}
         className="mySwiper px-6"
       >
         {reviews.map((review) => (
