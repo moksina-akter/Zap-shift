@@ -8,6 +8,9 @@ import Mission from "../pages/About/Mission";
 import Success from "../pages/About/Success";
 import Team from "../pages/About/Team";
 import Error from "../Components/Error";
+import AuthLayout from "../layoutes/AuthLayout";
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,20 @@ const router = createBrowserRouter([
         path: "/coverage",
         Component: Coverage,
         loader: () => fetch("/service-center.json").then((res) => res.json()),
+      },
+    ],
+  },
+  {
+    path: "/",
+    Component: AuthLayout,
+    children: [
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
       },
     ],
   },
