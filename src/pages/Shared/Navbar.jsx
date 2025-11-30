@@ -1,8 +1,19 @@
 import React from "react";
 import Logo from "../../Components/Logo";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  const handleLogOut = () => {
+    logOut()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const links = (
     <>
       <li>
@@ -15,18 +26,25 @@ const Navbar = () => {
         <NavLink to="/about-us">About Us</NavLink>
       </li>
       <li>
+        <NavLink to="/send-parcel">Send Parcel</NavLink>
+      </li>
+      {user && (
+        <li>
+          <NavLink to="/dashboard/my-parcels">My parcels</NavLink>
+        </li>
+      )}
+      <li>
         <NavLink to="/pricing">Pricing</NavLink>
       </li>
       <li>
-        <NavLink to="/blog">Blog</NavLink>
-      </li>
-      <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/beArider" className="btn btn-primary mx-4 text-black">
+          Be a Rider
+        </NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar mb-2 bg-base-300 rounded">
+    <div className="navbar mb-2 flex items-center shadow pb-4 rounded">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -59,8 +77,20 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
+
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {user ? (
+          <Link onClick={handleLogOut} className="btn">
+            LogOut
+          </Link>
+        ) : (
+          <Link to="/login" className="btn">
+            Login
+          </Link>
+        )}
+        <Link to="/rider" className="btn btn-primary mx-4 text-black">
+          Be a Rider
+        </Link>
       </div>
     </div>
   );
